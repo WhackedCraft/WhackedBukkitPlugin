@@ -15,9 +15,9 @@ public class TokenizeCommand implements CommandExecutor {
 
         if(!(commandSender instanceof Player)) {
             WhackedPlugin.instance.getLogger().info("Console can't use command " + s);
-
             return true;
         }
+
         Player player = (Player)commandSender;
 
         if(strings.length != 2) {
@@ -57,7 +57,6 @@ public class TokenizeCommand implements CommandExecutor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return true;
     }
 }

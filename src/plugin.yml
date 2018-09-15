@@ -7,3 +7,8 @@ commands:
     description: Tokenize diamonds.
     aliases: [tkn]
     usage: /tokenize <address> <item_count>
+
+  untokenize:
+    description: Untokonized assets.
+    aliases: [untkn]
+    usage: /untokenized <assetId>

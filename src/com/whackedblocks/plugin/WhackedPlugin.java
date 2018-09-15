@@ -17,6 +17,8 @@ public class WhackedPlugin extends JavaPlugin {
 
     static WhackedPlugin instance;
     static Logger logger;
+
+
     private Web3j web3j;
     private Exchange contract;
 
@@ -27,6 +29,7 @@ public class WhackedPlugin extends JavaPlugin {
         saveDefaultConfig();
         setupWeb3();
         getCommand("tokenize").setExecutor(new TokenizeCommand());
+        getCommand("untokenize").setExecutor(new UntokenizeCommand());
     }
 
     @Override
@@ -70,6 +73,10 @@ public class WhackedPlugin extends JavaPlugin {
 
     public Exchange getContract() {
         return contract;
+    }
+
+    public Web3j getWeb3j() {
+        return web3j;
     }
 
 }

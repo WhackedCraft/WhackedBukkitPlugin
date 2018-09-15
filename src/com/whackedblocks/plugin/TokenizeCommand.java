@@ -57,6 +57,7 @@ public class TokenizeCommand implements CommandExecutor {
             commandSender.sendMessage("txid: " + txId);
             player.sendTitle(count + " " + is.getType().name(), "zostaly zamienione w token!", 10, 40, 10);
         } catch (Exception e) {
+            player.sendTitle("Nie masz wystarczajaco etheru !!!", "", 10, 40, 10);
             e.printStackTrace();
         }
         return true;

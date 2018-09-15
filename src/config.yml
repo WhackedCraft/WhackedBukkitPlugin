@@ -1,6 +1,4 @@
-web3provider: https://ropsten.infura.io/v3/9defdc016d654060a6d372cbe5b2de0c
-publicKey: 0xc5A993a85a65f3cA2B032232627E01456522E4c5
-privateKey: 647c8e5ad896f4d0c7467114dfe6c311a3407f85d12a161c5cf48cbccab9aecd
+web3provider: 'https://ropsten.infura.io/v3/9defdc016d654060a6d372cbe5b2de0c'
 gasPrice: 21000
-gasLimit: 21000
-contractAddress: 0x7b527F5d4Cac55445430A98731317C7706224478
+gasLimit: 200000
+contractAddress: '0x7b527F5d4Cac55445430A98731317C7706224478'

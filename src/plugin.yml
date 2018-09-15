@@ -6,3 +6,4 @@ commands:
   tokenize:
     description: Tokenize diamonds.
     aliases: [tkn]
+    usage: /tokenize <address> <item_count>

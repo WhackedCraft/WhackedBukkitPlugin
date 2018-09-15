@@ -9,19 +9,19 @@ import org.bukkit.inventory.ItemStack;
 
 import java.math.BigInteger;
 
-public class UntokenizeCommand implements CommandExecutor{
+public class UntokenizeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if(!(commandSender instanceof Player)) {
+        if (!(commandSender instanceof Player)) {
             WhackedPlugin.instance.getLogger().info("Console can't use command " + s);
             return true;
         }
 
-        Player player = (Player)commandSender;
+        Player player = (Player) commandSender;
         Integer assetId = null;
 
-        if(strings.length != 1) {
+        if (strings.length != 1) {
             return false;
         }
 
@@ -36,13 +36,18 @@ public class UntokenizeCommand implements CommandExecutor{
 
         try {
             String claimString = contract.getAssetClaimString(BigInteger.valueOf(assetId)).send();
-            if(claimString.equals(player.getName())) {
+            if (claimString.equals(player.getName())) {
                 player.sendMessage("Najpierw ustaw claimString na Twoj nick w grze.");
                 return true;
             }
 
             String assetData = contract.getAssetData(BigInteger.valueOf(assetId)).send();
-            contract.burn(BigInteger.valueOf(assetId)).send();
+            try {
+                contract.burn(BigInteger.valueOf(assetId)).send();
+            } catch (RuntimeException e) {
+                commandSender.sendMessage("Niewlasciwy asset");
+                return true;
+            }
             WhackedPlugin.instance.getLogger().info(assetData);
             String[] data = assetData.split(",");
             player.getInventory().addItem(new ItemStack(Material.getMaterial(data[0]), Integer.parseInt(data[1])));

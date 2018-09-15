@@ -1,4 +1,4 @@
 web3provider: 'https://ropsten.infura.io/v3/9defdc016d654060a6d372cbe5b2de0c'
 gasPrice: 21000
 gasLimit: 200000
-contractAddress: '0x7b527F5d4Cac55445430A98731317C7706224478'
+contractAddress: '0x8b1ec0804Eb8786Fb3b58415eb0473742736D8a1'

@@ -14,6 +14,7 @@ public class WhackedPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         logger = this.getLogger();
+        saveDefaultConfig();
         Bukkit.getLogger().info("Super plugin wlaczony!");
         getCommand("tokenize").setExecutor(new TokenizeCommand());
     }

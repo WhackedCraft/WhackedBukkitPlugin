@@ -1,0 +1,8 @@
+name: WhackedPlugin
+version: 1.0.0
+main: com.whackedblocks.plugin.WhackedPlugin
+authors: [spaghetticoderIT, Xeno]
+commands:
+  tokenize:
+    description: Tokenize diamonds.
+    aliases: [tkn]

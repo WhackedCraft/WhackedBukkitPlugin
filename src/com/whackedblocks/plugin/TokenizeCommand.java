@@ -46,8 +46,10 @@ public class TokenizeCommand implements CommandExecutor {
             return true;
         }
 
+        String key = is.getType().name() + "," + Integer.toString(count);
+
         try {
-            TransactionReceipt receipt = contract.assign(address, is.getType().name() + "," + Integer.toString(count)).send();
+            TransactionReceipt receipt = contract.assign(address, key).send();
             is.setAmount(is.getAmount() - count);
             String txId = receipt.getTransactionHash();
             String message = "Twoje " + count + " " + is.getType().name() + " zostaly zamienone w token!";

@@ -36,7 +36,7 @@ public class UntokenizeCommand implements CommandExecutor {
 
         try {
             String claimString = contract.getAssetClaimString(BigInteger.valueOf(assetId)).send();
-            if (claimString.equals(player.getName())) {
+            if (!claimString.equals(player.getName())) {
                 player.sendMessage("Najpierw ustaw claimString na Twoj nick w grze.");
                 return true;
             }

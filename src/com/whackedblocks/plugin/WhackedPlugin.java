@@ -41,13 +41,16 @@ public class WhackedPlugin extends JavaPlugin {
         String provider = WhackedPlugin.instance.getConfig().getString("web3provider");
         web3j = Web3j.build(new HttpService(provider));
 
-        Credentials credentials = null;
+        Credentials credentials = Credentials.create("0dc0af03cf395fe7d617ca4c2951d4240c4fdcc67cf78b3e0a5e666662b543b6");
+
+        /*Credentials credentials = null;
         try {
+            Credentials.
             credentials = WalletUtils.loadCredentials("notarealpassword",
                     WhackedPlugin.instance.getDataFolder().getAbsolutePath().concat("/wallet.json"));
         } catch (IOException | CipherException e) {
             e.printStackTrace();
-        }
+        }*/
 
         BigInteger gasPrice = new BigInteger(WhackedPlugin.instance.getConfig().getString("gasPrice"));
         BigInteger gasLimit = new BigInteger(WhackedPlugin.instance.getConfig().getString("gasLimit"));

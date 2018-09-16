@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
+import java.util.concurrent.CompletableFuture;
+
 
 public class TokenizeCommand implements CommandExecutor {
     @Override
@@ -48,14 +50,18 @@ public class TokenizeCommand implements CommandExecutor {
 
         String key = is.getType().name() + "," + Integer.toString(count);
 
+        is.setAmount(is.getAmount() - count);
+
         try {
-            TransactionReceipt receipt = contract.assign(address, key).send();
-            is.setAmount(is.getAmount() - count);
-            String txId = receipt.getTransactionHash();
-            String message = "Twoje " + count + " " + is.getType().name() + " zostaly zamienone w token!";
-            commandSender.sendMessage(message);
-            commandSender.sendMessage("txid: " + txId);
-            player.sendTitle(count + " " + is.getType().name(), "zostaly zamienione w token!", 10, 40, 10);
+            CompletableFuture<TransactionReceipt> transactionReceiptCompletableFuture = contract.assign(address, key).sendAsync();
+            player.sendTitle("Transakcja wyslana", "oczekiwanie na potwierzenie...", 10, 40, 10);
+            transactionReceiptCompletableFuture.thenAccept(transactionReceipt -> {
+                String txId = transactionReceipt.getTransactionHash();
+                String message = "Twoje " + count + " " + is.getType().name() + " zostaly zamienone w token!";
+                commandSender.sendMessage(message);
+                commandSender.sendMessage("txid: " + txId);
+                player.sendTitle(count + " " + is.getType().name(), "zostaly zamienione w token!", 10, 40, 10);
+            });
         } catch (Exception e) {
             player.sendTitle("Nie masz wystarczajaco etheru !!!", "", 10, 40, 10);
             e.printStackTrace();
